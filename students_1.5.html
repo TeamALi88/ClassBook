@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,6 +155,7 @@
         var mytable = document.getElementById("mytable");
 
         //test
+        
         //test over
 
         //初始页面：显示同学录内容
@@ -205,13 +206,13 @@
                             check_box.setAttribute("style","display:block");
 
                             var mes=document.getElementsByClassName("check_text");
-                            mes[0].value=data.name;
-                            mes[1].value=data.address;
-                            mes[2].value=data.phone;
-                            mes[3].value=data.wechat;
-                            mes[4].value=data.mail;
-                            mes[5].value=data.qq;
-                            mes[6].value=data.note;
+                            mes[0].value=data[0].name;
+                            mes[1].value=data[0].address;
+                            mes[2].value=data[0].phone;
+                            mes[3].value=data[0].wechat;
+                            mes[4].value=data[0].mail;
+                            mes[5].value=data[0].qq;
+                            mes[6].value=data[0].note;
 
                     }
                     else {
@@ -222,19 +223,7 @@
             xmlhttp.send(send_message);
         }
 
-        //添加按钮
-        var add=document.getElementById("add");
-        add.onclick=function(){
-            var box=document.getElementById("box");
-            var check_box=document.getElementById("check_box");
-            var add_button=document.getElementById("add_button");
-            var change_button=document.getElementById("change_button");
-
-            box.setAttribute("style","display:block;");
-            check_box.setAttribute("style","display:none");
-            add_button.setAttribute("style","display:block;");
-            change_button.setAttribute("style","display:none");
-        }
+//刘晓部分
 
 
         //添加功能  发送json数据
@@ -348,54 +337,9 @@
 
         }
 
-        //删除函数 调用删除接口
-        function remove() {
-            this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-            var id = this.parentNode.parentNode.cells[2].firstChild.textContent;
+//叶文滔部分
 
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "http://97.64.21.155:5001/delete", true);
-            xmlhttp.setRequestHeader("Content-type", 'application/json;charset=utf-8');
-            alert(id);
-            var str = {"phone":id};
-            var send_message=JSON.stringify(str);
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4) {
-                    if (xmlhttp.status == 200) {
-                        var data = JSON.parse(xmlhttp.responseText);
-                        if (data.finished == 'true') {
-                            alert("删除成功");
-                        }
-                    }
-                    else {
-                        alert("删除失败" + xmlhttp.status);
-                    }
-                }
-            }
-            xmlhttp.send(send_message);
-        }
-
-        //修改函数  调用修改接口
-        function change() {
-            var box=document.getElementById("box");
-            var check_box=document.getElementById("check_box");
-            var add_button=document.getElementById("add_button");
-            var change_button=document.getElementById("change_button");
-
-            box.setAttribute("style","display:block;");
-            check_box.setAttribute("style","display:none");
-            add_button.setAttribute("style","display:none;");
-            change_button.setAttribute("style","display:block");
-
-            my_name.value = this.parentNode.parentNode.cells[0].firstChild.textContent;
-            my_address.value = this.parentNode.parentNode.cells[1].firstChild.textContent;
-            my_phone.value = this.parentNode.parentNode.cells[2].firstChild.textContent;
-            my_wechat.value = this.parentNode.parentNode.cells[3].firstChild.textContent;
-            my_mail.value = this.parentNode.parentNode.cells[4].firstChild.textContent;
-            my_qq.value = this.parentNode.parentNode.cells[5].firstChild.textContent;
-            my_note.value = this.parentNode.parentNode.cells[6].firstChild.textContent;
-
-            var id = this.parentNode.parentNode.cells[2].firstChild.innerHTML;
+//李嘉群部分
 
             //确认修改事件
             var change_button = document.getElementById("change_button");
@@ -437,28 +381,7 @@
             }
         }
 
-        //导出为excel文件 调用导出接口
-        var excel=document.getElementById("excel");
-        excel.onclick=function(){
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "http://97.64.21.155:5001/export", true);
-            xmlhttp.setRequestHeader("Content-type", "application/json;charset=utf-8");
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4) {
-                    if (xmlhttp.status == 200) {
-                        var data = JSON.parse(xmlhttp.responseText);
-                        if (data.finished == 'true') {
-                            alert("导出成功");
-                        }
-                    }
-                    else {
-                        alert("导出失败" + xmlhttp.status);
-                    }
-                }
-            }
-            xmlhttp.send();
-        }
-    }
+//王国超部分
 
 </script>
 
